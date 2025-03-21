@@ -432,12 +432,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # REAL APPLICATION
-    anal = VaspMDAnalyzer(args.xdatcar_path, args.potim, start_conf=args.start_conf)
+    analyze = VaspMDAnalyzer(args.xdatcar_path, args.potim, start_conf=args.start_conf)
 
     print("\nCompute MSD using FFT:")
     start = time()
-    np.save("MSD_FFT", anal.get_MSD("H", "fft"))
+    np.save("MSD_FFT", analyze.get_MSD("H", "fft"))
     print(f"Finished in {time() - start:.3f}s")
 
-    anal.plot_MSD("H")
-    anal.write("XDATCAR_corretto")
+    analyze.plot_MSD("H")
+    analyze.write("XDATCAR_corrected")
+
+#This code has been written by Luca Leoni
